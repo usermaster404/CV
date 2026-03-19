@@ -1,0 +1,21 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+function App() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/users")
+      .then(res => setUsers(res.data));
+  }, []);
+
+  return (
+    <div>
+      {users.map(user => (
+        <p key={user._id}>{user.name}</p>
+      ))}
+    </div>
+  );
+}
+
+export default App;

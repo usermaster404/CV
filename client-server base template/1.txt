@@ -1,0 +1,56 @@
+i have this how do i run : lets do this : Client (Browser)
+    |
+    |  User clicks button / submits form
+    v
+React Component (client/src/components/...)
+    |
+    |  axios / fetch → HTTP Request (e.g., GET /api/users)
+    v
+client/src/services/api.js (optional API layer)
+    |
+    |  Sends request to backend
+    v
+--------------------------------------------
+SERVER SIDE
+--------------------------------------------
+server/src/server.js (or app.js)
+    |  --> Express receives the request
+    v
+server/src/routes/userRoutes.js
+    |  --> Matches route to controller function
+    v
+server/src/controllers/userController.js
+    |  --> Handles req/res, calls service layer
+    v
+server/src/services/userService.js
+    |  --> Business logic / data processing
+    v
+server/src/models/User.js
+    |  --> Mongoose model executes query
+    v
+server/src/config/db.js
+    |  --> Mongoose connection to MongoDB
+    v
+Database (MongoDB)
+    |
+    |  Query results returned
+    v
+server/src/models/User.js
+    |  --> Returns documents to service
+    v
+server/src/services/userService.js
+    |  --> Formats / aggregates data
+    v
+server/src/controllers/userController.js
+    |  --> Sends JSON response
+    v
+--------------------------------------------
+CLIENT SIDE
+--------------------------------------------
+React Component
+    |  --> Updates state (useState)
+    v
+UI Re-renders with new data
+    |
+    v
+Client (Browser)
